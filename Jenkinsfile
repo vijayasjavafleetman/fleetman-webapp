@@ -127,9 +127,16 @@ node {
                         ),
                         sshTransfer(
                            execTimeout: 999999,
-                           sourceFiles: "dist,nginx.conf.j2,Dockerfile,docker-entrypoint.sh, ${appname}-build-playbook.yaml",
+                           sourceFiles: "nginx.conf.j2,Dockerfile,docker-entrypoint.sh, ${appname}-build-playbook.yaml",
                            removePrefix: "",
                            remoteDirectory: "${appname}/workspace",
+                           execCommand: ""
+                        ),
+                        sshTransfer(
+                           execTimeout: 999999,
+                           sourceFiles: "dist/**/*",
+                           removePrefix: "",
+                           remoteDirectory: "${appname}/workspace/dist",
                            execCommand: "cd /home/ansadmin/jenkins/${appname}/workspace;ansible-playbook -i /home/ansadmin/jenkins/${appname}/hostconfig/hosts -u ansadmin -e tag=${REPOSITORY_TAG} /home/ansadmin/jenkins/${appname}/workspace/${appname}-build-playbook.yaml;"
                         )
                      ]
