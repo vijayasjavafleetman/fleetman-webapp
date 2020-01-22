@@ -123,20 +123,13 @@ node {
                            sourceFiles: "",
                            removePrefix: "",
                            remoteDirectory: "",
-                           execCommand: "cd /home/ansadmin/jenkins/${appname}/workspace;rm -rf *;rm -f *;mkdir dist;"
+                           execCommand: "cd /home/ansadmin/jenkins/${appname}/workspace;rm -rf *;rm -f *;"
                         ),
                         sshTransfer(
                            execTimeout: 999999,
-                           sourceFiles: "nginx.conf.j2,Dockerfile,docker-entrypoint.sh, ${appname}-build-playbook.yaml",
+                           sourceFiles: "dist/**/*,nginx.conf.j2,Dockerfile,docker-entrypoint.sh, ${appname}-build-playbook.yaml",
                            removePrefix: "",
                            remoteDirectory: "${appname}/workspace",
-                           execCommand: ""
-                        ),
-                        sshTransfer(
-                           execTimeout: 999999,
-                           sourceFiles: "dist/**/*",
-                           removePrefix: "",
-                           remoteDirectory: "${appname}/workspace/dist",
                            execCommand: "cd /home/ansadmin/jenkins/${appname}/workspace;ansible-playbook -i /home/ansadmin/jenkins/${appname}/hostconfig/hosts -u ansadmin -e tag=${REPOSITORY_TAG} /home/ansadmin/jenkins/${appname}/workspace/${appname}-build-playbook.yaml;"
                         )
                      ]
