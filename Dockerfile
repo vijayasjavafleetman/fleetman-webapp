@@ -17,7 +17,6 @@ COPY nginx.conf.j2 /templates/
 
 COPY docker-entrypoint.sh /
 
-RUN j2 /templates/nginx.conf.j2 > /etc/nginx/nginx.conf
-RUN exec "$@"
+ENTRYPOINT ["sudo /docker-entrypoint.sh"]
 
 CMD ["nginx", "-g", "daemon off;"]
