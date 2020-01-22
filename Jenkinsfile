@@ -158,7 +158,7 @@ node {
                                  sourceFiles: "",
                                  removePrefix: "",
                                  remoteDirectory: "",
-                                 execCommand: "cd /home/ansadmin/jenkins/${appname}/workspace;rm -f *;"
+                                 execCommand: "cd /home/ansadmin/jenkins/${appname}/workspace;rm -rf *;rm -f *;"
                               ),
                               sshTransfer(
                                  execTimeout: 999999,

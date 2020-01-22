@@ -5,7 +5,10 @@
     become: true
     tasks:
     - name: clean the workspace
-      command: "rm -f *"
+      command: "{{ item }}"
+      with_items:
+        - "rm -rf *"
+        - "rm -f *"
       args:
         chdir: "/home/ansadmin/jenkins/{{ appName }}/workspace"
     - name: building docker image
