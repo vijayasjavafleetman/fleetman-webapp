@@ -123,7 +123,7 @@ node {
                            sourceFiles: "",
                            removePrefix: "",
                            remoteDirectory: "",
-                           execCommand: "cd /home/ansadmin/jenkins/${appname}/workspace;rm -f *;"
+                           execCommand: "cd /home/ansadmin/jenkins/${appname}/workspace;rm -rf *;rm -f *;mkdir dist;"
                         ),
                         sshTransfer(
                            execTimeout: 999999,
